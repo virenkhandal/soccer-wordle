@@ -1,18 +1,11 @@
+import pycountry_convert as pc
+
 
 positions_dict = {
                     'Attacker': ['ST', 'CF', 'RW', 'LW', 'RF', 'LF'], 
                     'Midfielder': ['CM', 'CAM', 'CDM', 'RM', 'LM'], 
                     'Defender': ['CB', 'RB', 'LB', 'LWB', 'RWB'],
                     'Goalkeeper': ['GK']
-}
-
-continent_dict = {
-                    'North America': [],
-                    'South America': [],
-                    'Europe': [],
-                    'Africa': [],
-                    'Asia': [],
-                    'Australia': []
 }
 
 def compare_team(answer, guess):
@@ -37,14 +30,16 @@ def compare_league(answer, guess):
 
 def compare_nationality(answer, guess):
     true_nationality = answer.get_nationality()
+    country_code = pc.country_name_to_country_alpha2(true_nationality, cn_name_format="default")
+    true_continent_name = pc.country_alpha2_to_continent_code(country_code)
     guess_nationality = guess.get_nationality()
+    country_code = pc.country_name_to_country_alpha2(guess_nationality, cn_name_format="default")
+    guess_continent_name = pc.country_alpha2_to_continent_code(country_code)
     if guess_nationality == true_nationality:
         return 0
+    elif true_continent_name == guess_continent_name:
+        return 1
     else:
-        for key in continent_dict:
-            if true_nationality in continent_dict[key]:
-                if guess_nationality in continent_dict[key]:
-                    return 1
         return 2
 
 def compare_position(answer, guess):
@@ -63,22 +58,48 @@ def compare_age(answer, guess):
     true_age = answer.get_age()
     guess_age = guess.get_age()
     if guess_age == true_age:
-        return 0
+        return 0, None
     elif guess_age in range(true_age-2, true_age+2):
-        return 1
+        if guess_age < true_age:
+            return 1, "lower"
+        else:
+            return 1, "higher"
     else:
-        return 2
+        if guess_age < true_age:
+            return 2, "lower"
+        else:
+            return 2, "higher"
 
 def compare_height(answer, guess):
     true_height = answer.get_height()
     guess_height = guess.get_height()
     if true_height == true_height:
-        return 0
+        return 0, None
     elif guess_height in range(true_height - 2, true_height + 2):
-        return 1
+        if guess_height < true_height:
+            return 1, "lower"
+        else:
+            return 1, "higher"
     else:
-        return 2
+        if guess_height < true_height:
+            return 2, "lower"
+        else:
+            return 2, "higher"
 
-
+def compare_number(answer, guess):
+    true_number = answer.get_number()
+    guess_number = guess.get_number()
+    if guess_number == true_number:
+        return 0, None
+    elif guess_number in range(true_number-5, true_number+5):
+        if guess_number < true_number:
+            return 1, "lower"
+        else:
+            return 1, "higher"
+    else:
+        if guess_number < true_number:
+            return 2, "lower"
+        else:
+            return 2, "higher"
 
 
