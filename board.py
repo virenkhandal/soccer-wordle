@@ -8,6 +8,11 @@ positions_dict = {
                     'Goalkeeper': ['GK']
 }
 
+def compare_player(answer, guess):
+    true_player = answer.get_name()
+    guess_player = guess.get_name()
+    return true_player == guess_player
+
 def compare_team(answer, guess):
     true_team = answer.current_team()
     guess_team = guess.current_team()
