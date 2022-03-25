@@ -14,22 +14,24 @@ def compare_player(answer, guess):
     return true_player == guess_player
 
 def compare_team(answer, guess):
-    true_team = answer.current_team()
-    guess_team = guess.current_team()
+    true_team = answer.get_team()
+    true_league = answer.get_league()
+    guess_team = guess.get_team()
+    guess_league = guess.get_league
     if guess_team == true_team:
         return 0
-    elif guess_team in answer.get_teams():
+    elif guess_league in true_league:
         return 1
     else:
         return 2
 
 def compare_league(answer, guess):
-    true_league = answer.current_league()
-    guess_league = guess.current_league()
+    true_league = answer.get_league()
+    guess_league = guess.get_league()
     if guess_league == true_league:
         return 0
-    elif guess_league in answer.get_leagues():
-        return 1
+    # elif guess_league in answer.get_leagues():
+    #     return 1
     else:
         return 2
 
