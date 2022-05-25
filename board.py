@@ -1,5 +1,6 @@
 import pycountry_convert as pc
 
+# player: team, nationality, position, height, age, number
 
 positions_dict = {
                     'Attacker': ['ST', 'CF', 'RW', 'LW', 'RF', 'LF'], 
