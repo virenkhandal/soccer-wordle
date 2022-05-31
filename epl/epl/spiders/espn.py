@@ -31,7 +31,23 @@ class EspnSpider(scrapy.Spider):
     # Juventus, Napoli, Inter Milan, AC Milan
     # Bayern Munich, Borussia Dortmund
     # Ajax
-    start_urls = []
+    start_urls = ["https://www.espn.com/soccer/team/squad/_/id/382/league/ENG.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/364/league/ENG.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/360/league/ENG.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/359/league/ENG.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/363/league/ENG.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/367/league/ENG.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/86/league/ESP.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/83/league/ESP.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/1068/league/ESP.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/160/league/FRA.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/111/league/ITA.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/110/league/ITA.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/103/league/ITA.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/114/league/ITA.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/132/league/GER.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/132/league/GER.1",
+                    "https://www.espn.com/soccer/team/squad/_/id/124/league/GER.1"]
 
     def parse(self, response):
         squad = []
