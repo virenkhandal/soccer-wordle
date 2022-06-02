@@ -10,8 +10,9 @@ players = []
 for player in csvreader:
     name = player[0]
     team = player[1]
-    jersey = player[2]
-    stats = player[3].split(",")
+    league = player[2]
+    jersey = player[3]
+    stats = player[4].split(",")
     position = stats[0]
     age = stats[1]
     height = stats[2]
@@ -19,10 +20,13 @@ for player in csvreader:
     nation = stats[4]
     try:
         appearances = int(stats[5])
+        if appearances > 15:
+            point = [name, team, age, nation, position, height, jersey]
+            players.append(point)
     except:
         ValueError
-    if appearances > 15:
-        point = [name, team, age, nation, position, height, weight, jersey]
-        print(point)
+    
     # print(stats)
+print(players)
 
+# next step is to create sqlite server and add players to it

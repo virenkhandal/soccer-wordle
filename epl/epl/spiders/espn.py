@@ -55,14 +55,17 @@ class EspnSpider(scrapy.Spider):
         data = response.xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "inline", " " ))]/text()').extract()
         jerseys = response.xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "n10", " " ))]/text()').extract()
         names = response.xpath('//*[contains(concat( " ", @class, " " ), concat( " ", "inline", " " ))]/a/text()').extract()
+        # league???
+        league = response.url.split('/')[-1][:-2]
         index = 0
-        for i in range(0, len(names)):
+        for i in range(0, len(jerseys)):
             name = names[i]
             jersey = jerseys[i]
             position = data[index][0]
             if position == 'G':
                 yield {'Name': name,
                    'Team': team,
+                   'League': league,
                    'Jersey' : jersey,
                    'Stats': data[index:index+14]}
                 # stats = data[index:index+14]
@@ -70,6 +73,7 @@ class EspnSpider(scrapy.Spider):
             else:
                 yield {'Name': name,
                    'Team': team,
+                   'League': league,
                    'Jersey' : jersey,
                    'Stats': data[index:index+15]}
                 index += 15
