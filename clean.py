@@ -21,12 +21,12 @@ for player in csvreader:
     try:
         appearances = int(stats[5])
         if appearances > 15:
-            point = [name, team, age, nation, position, height, jersey]
+            point = [name, team, age, nation, position, jersey]
             players.append(point)
     except:
         ValueError
     
     # print(stats)
-print(players)
+# print(players)
 
 # next step is to create sqlite server and add players to it
