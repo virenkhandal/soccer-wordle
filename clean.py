@@ -21,7 +21,7 @@ for player in csvreader:
     try:
         appearances = int(stats[5])
         if appearances > 15:
-            point = [name, team, age, nation, position, jersey]
+            point = [name, team, league, age, nation, position, jersey]
             players.append(point)
     except:
         ValueError

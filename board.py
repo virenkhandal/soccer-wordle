@@ -1,14 +1,9 @@
 import pycountry_convert as pc
 
-# player: team, nationality, position, height, age, number
-
-positions_dict = {
-                    'Attacker': ['ST', 'CF', 'RW', 'LW', 'RF', 'LF'], 
-                    'Midfielder': ['CM', 'CAM', 'CDM', 'RM', 'LM'], 
-                    'Defender': ['CB', 'RB', 'LB', 'LWB', 'RWB'],
-                    'Goalkeeper': ['GK']
+# player: team, nationality, position, age, number
+league_dict = {
+    "ENG"
 }
-
 def compare_player(answer, guess):
     true_player = answer.get_name()
     guess_player = guess.get_name()
@@ -18,23 +13,21 @@ def compare_team(answer, guess):
     true_team = answer.get_team()
     true_league = answer.get_league()
     guess_team = guess.get_team()
-    guess_league = guess.get_league
+    guess_league = guess.get_league()
     if guess_team == true_team:
         return 0
-    elif guess_league in true_league:
+    elif guess_league == true_league:
         return 1
     else:
         return 2
 
-def compare_league(answer, guess):
-    true_league = answer.get_league()
-    guess_league = guess.get_league()
-    if guess_league == true_league:
-        return 0
-    # elif guess_league in answer.get_leagues():
-    #     return 1
-    else:
-        return 2
+# def compare_league(answer, guess):
+#     true_league = answer.get_league()
+#     guess_league = guess.get_league()
+#     if guess_league == true_league:
+#         return 0
+#     else:
+#         return 2
 
 def compare_nationality(answer, guess):
     true_nationality = answer.get_nationality()
@@ -55,12 +48,11 @@ def compare_position(answer, guess):
     guess_position = guess.get_position()
     if guess_position == true_position:
         return 0
-    else:
-        for key in positions_dict:
-            if true_position in positions_dict[key]:
-                if guess_position in positions_dict[key]:
-                    return 1
+    if true_position == "G":
         return 2
+    else:
+        return 1
+
 
 def compare_age(answer, guess):
     true_age = answer.get_age()
@@ -78,7 +70,7 @@ def compare_age(answer, guess):
         else:
             return 2, "higher"
 
-def compare_height(answer, guess):
+# def compare_height(answer, guess):
     true_height = answer.get_height()
     guess_height = guess.get_height()
     if true_height == true_height:

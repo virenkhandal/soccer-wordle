@@ -23,8 +23,8 @@ def create_table(conn, create_table_sql):
         print(e)
 
 def create_player(conn, player):
-    sql = ''' INSERT OR IGNORE INTO players(name,team,age,nation,position,jersey)
-              VALUES(?,?,?,?,?,?) '''
+    sql = ''' INSERT OR IGNORE INTO players(name,team,league,age,nation,position,jersey)
+              VALUES(?,?,?,?,?,?,?) '''
     cur = conn.cursor()
     cur.execute(sql, player)
     conn.commit()
@@ -45,6 +45,7 @@ if __name__ == '__main__':
     players_table = """ CREATE TABLE IF NOT EXISTS players (
                                         name text,
                                         team text,
+                                        league text,
                                         age integer,
                                         nation text,
                                         position text,
@@ -56,6 +57,6 @@ if __name__ == '__main__':
         create_table(conn, players_table)
         for player in players:
             # print(player)
-            data = (player[0], player[1], player[2], player[3], player[4], player[5])
+            data = (player[0], player[1], player[2], player[3], player[4], player[5], player[6])
             create_player(conn, data)
         select_random_player(conn)
