@@ -38,6 +38,7 @@ def select_random_player(conn):
     cur.execute(sql, (index,))
     row = cur.fetchall()
     print(row)
+    return row
 
 
 if __name__ == '__main__':
