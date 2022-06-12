@@ -6,8 +6,9 @@ app = Flask(__name__)
 @app.route('/')
 def homepage():
     data = get_db()
-    # render_template('/static/index.html')
-    return str(data)
+    # player = data[0]
+    return render_template('index.html', player=data)
+    # return str(data)
 
 def get_db():
     db = getattr(g, '_database', None)
